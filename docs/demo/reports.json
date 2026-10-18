@@ -1,0 +1,42 @@
+[
+ {
+  "title": "Бекітілген құжаттардың тізілімі (VIEW)",
+  "sql": "SELECT reg_number, doc_date, doc_type, department, status\n  FROM v_registry\n WHERE status IN ('бекітілді', 'мұрағатта')\n ORDER BY doc_date DESC;",
+  "public": true
+ },
+ {
+  "title": "Құжат түрлері бойынша статистика (LEFT JOIN, GROUP BY)",
+  "sql": "SELECT t.code, t.name, COUNT(d.id) AS саны\n  FROM document_types t\n  LEFT JOIN documents d ON d.type_id = t.id\n GROUP BY t.id\n ORDER BY саны DESC;",
+  "public": true
+ },
+ {
+  "title": "Бөлімшелер бойынша құжаттар (JOIN, GROUP BY, HAVING)",
+  "sql": "SELECT dep.name AS бөлімше, COUNT(*) AS саны, SUM(d.pages) AS беттер\n  FROM documents d\n  JOIN departments dep ON dep.id = d.department_id\n GROUP BY dep.id\nHAVING COUNT(*) >= 5\n ORDER BY саны DESC;",
+  "public": true
+ },
+ {
+  "title": "2026–2027 оқу жылында құжаты жоқ түрлер (NOT EXISTS)",
+  "sql": "SELECT t.code, t.name\n  FROM document_types t\n WHERE NOT EXISTS (\n       SELECT 1 FROM documents d\n        WHERE d.type_id = t.id\n          AND d.academic_year = '2026-2027');",
+  "public": true
+ },
+ {
+  "title": "Мұрағат құжаттарының сақтау мерзімі (күнмен есептеу)",
+  "sql": "SELECT d.reg_number, d.doc_date, t.retention_years AS мерзімі,\n       date(d.doc_date, '+' || t.retention_years || ' years') AS аяқталуы\n  FROM documents d\n  JOIN document_types t ON t.id = d.type_id\n WHERE d.status = 'мұрағатта'\n ORDER BY аяқталуы;",
+  "public": true
+ },
+ {
+  "title": "Келісу сатысындағы құжаттар (WHERE, IN)",
+  "sql": "SELECT reg_number, title, status, author\n  FROM documents\n WHERE status IN ('жоба', 'келісуде')\n ORDER BY doc_date;",
+  "public": false
+ },
+ {
+  "title": "Білім алушылар және құжаттар саны (LEFT JOIN)",
+  "sql": "SELECT s.full_name, s.group_name, COUNT(ds.document_id) AS құжат\n  FROM students s\n  LEFT JOIN document_students ds ON ds.student_id = s.id\n GROUP BY s.id\n ORDER BY құжат DESC;",
+  "public": false
+ },
+ {
+  "title": "Топтар бойынша білім алушылар саны (GROUP BY)",
+  "sql": "SELECT group_name, course, COUNT(*) AS саны\n  FROM students\n GROUP BY group_name, course\n ORDER BY course, group_name;",
+  "public": false
+ }
+]

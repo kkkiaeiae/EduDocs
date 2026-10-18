@@ -48,7 +48,7 @@
 <body>
   <header><div class="bar"><strong>EduDocs</strong><span>«Деректер базасы және SQL сұратымдар» пәні бойынша курстық жұмыс</span></div></header>
   <nav><div class="bar">
-    <a href="#about">Жоба туралы</a><a href="#run">Іске қосу</a><a href="#db">Деректер базасы</a><a href="#steps">12 қадам</a><a href="#screens">Беттер</a>
+    <a href="#about">Жоба туралы</a><a href="#run">Іске қосу</a><a href="#db">Деректер базасы</a><a href="#steps">12 қадам</a><a href="#screens">Беттер</a><a href="demo/">Онлайн демо</a>
   </div></nav>
   <main>
     <h1 id="about">Мемлекеттік жоғары оқу орнындағы оқу үдерісіне қатысты құжаттарды есепке алуға арналған деректер базасын құру</h1>
@@ -60,7 +60,8 @@
     </dl>
     <p>Кафедралар мен тіркеу офисі дайындайтын оқу құжаттары (силлабустар, оқу жұмыс жоспарлары, емтихан ведомостары, контингент бойынша бұйрықтар, анықтамалар) бір тізілімде тіркеледі. Әр құжаттың бірегей тіркеу нөмірі, түрі, күні, оқу жылы, жауапты бөлімшесі және мәртебесі сақталады, ал бұйрықтар мен анықтамалар оларға қатысты білім алушылармен байланыстырылады.</p>
     <div class="downloads">
-      <a class="button primary" data-file="report/EduDocs_kurstyq_zhumys.pdf" href="#">Курстық жұмыс (PDF)</a>
+      <a class="button primary" href="demo/">Онлайн демо: жүйеге кіру</a>
+      <a class="button" data-file="report/EduDocs_kurstyq_zhumys.pdf" href="#">Курстық жұмыс (PDF)</a>
       <a class="button" data-file="report/EduDocs_kurstyq_zhumys.docx" href="#">Курстық жұмыс (DOCX)</a>
       <a class="button" data-file="report/EduDocs_qorgau.pptx" href="#">Презентация (PPTX)</a>
       <a class="button" data-repo href="#">Бастапқы код</a>
@@ -78,7 +79,7 @@ python start.py</pre>
         <tr><td>Қонақ</td><td><code>qonaq</code></td><td><code>Qonaq2026</code></td><td>Басты бет, Құжаттар тізілімі, SQL есептер; тек бекітілген және мұрағаттағы құжаттар</td></tr>
       </tbody>
     </table>
-    <div class="note">Қосымша компьютердің өзінде жұмыс істейді (Python-ның <code>http.server</code> модулі), сондықтан оны осы бетте ашу мүмкін емес – төменде беттердің скриншоттары берілген.</div>
+    <div class="note">Қосымшаны браузерде бірден көруге болады: <a href="demo/">онлайн демо нұсқа</a>. Онда сол <code>edudocs.db</code> базасы браузердің ішінде SQLite (WebAssembly) арқылы ашылады, ал Python серверінің орнына сұратымдарды JavaScript орындайды. Демода енгізілген өзгерістер бетті жаңартқанда жойылады. Толық нұсқа – <code>python start.py</code>.</div>
 
     <h2 id="db">Деректер базасы</h2>
     <p>Схема үшінші қалыпты формаға келтірілген: 6 кесте, 4 сыртқы кілт (RESTRICT, CASCADE), 2 индекс, 1 көрініс (<code>v_registry</code>) және бекітілген құжатты жоюға тыйым салатын 1 триггер (<code>trg_protect_approved</code>).</p>
