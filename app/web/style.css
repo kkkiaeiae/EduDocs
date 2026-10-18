@@ -1,0 +1,172 @@
+/* EduDocs — веб-интерфейстің безендірілуі */
+
+:root{
+  --blue:#2b5797; --blue-dark:#1f4277; --blue-light:#e4ecf7;
+  --ink:#1f2933; --muted:#5f6b76; --rule:#c5cdd6; --rule-soft:#e1e6eb;
+  --bg:#eceff2; --paper:#fff; --alt:#f6f8fa; --head:#f0f2f5;
+  --red:#b3261e; --brown:#9a5b00; --green:#1e7b3a; --slate:#4a5a8a; --grey:#6b7280;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.45 Arial,"Liberation Sans",Helvetica,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+h1,h2,h3,p{margin:0}
+a{color:var(--blue)}
+.muted{color:var(--muted)}
+
+/* Батырмалар және өрістер */
+.button{display:inline-block;border:1px solid #9aa6b2;border-radius:3px;background:#f7f8fa;padding:5px 14px;font-size:13px;line-height:18px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.button:hover{background:#eceff3}
+.button.primary{background:var(--blue);border-color:var(--blue-dark);color:#fff}
+.button.primary:hover{background:var(--blue-dark)}
+.button.danger{background:var(--red);border-color:#8c1d17;color:#fff}
+input,select,textarea{border:1px solid #a9b3bd;border-radius:2px;background:#fff;padding:4px 6px;font-size:13px;height:28px}
+textarea{height:auto}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid #8fb0dd;outline-offset:0}
+textarea{font-family:Consolas,"Courier New",monospace;font-size:13px;line-height:1.5}
+
+/* Кіру беті */
+.login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.login-box{width:100%;max-width:420px;background:var(--paper);border:1px solid var(--rule);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.login-title{background:var(--blue);color:#fff;padding:14px 20px}
+.login-title strong{display:block;font-size:20px}
+.login-title span{font-size:13px;color:#d5e0f0}
+.login-body{padding:18px 20px 6px}
+.login-body label{display:block;margin:10px 0 4px;font-weight:bold}
+.login-body input{width:100%;height:32px}
+.login-body .button{margin:16px 0 12px;padding:6px 28px}
+.login-roles{width:100%;border-collapse:collapse;border-top:1px solid var(--rule-soft);font-size:12px}
+.login-roles th,.login-roles td{padding:8px 0 8px 20px;text-align:left;vertical-align:top;background:none;border:0;position:static;font-size:12px;color:var(--muted);white-space:normal}
+.login-roles th{color:var(--ink);font-weight:bold;width:80px;letter-spacing:0}
+.login-roles td{padding-right:20px}
+.login-foot{margin-top:14px;font-size:12px;color:var(--muted)}
+.form-error{margin-top:12px;border:1px solid #e3b4b0;background:#fbeceb;color:var(--red);padding:7px 9px}
+
+/* Қаңқа: жоғарғы жолақ, қойындылар, төменгі күй жолағы */
+.shell{min-height:100vh;display:flex;flex-direction:column}
+.appbar{background:var(--blue);color:#fff;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.appname strong{font-size:17px;margin-right:10px}
+.appname span{color:#cfdcef}
+.account{display:flex;align-items:center;gap:12px}
+.role{border:1px solid #9fb8dc;padding:1px 7px;font-size:12px;color:#e6eef9}
+.logout{border:1px solid #9fb8dc;background:none;color:#fff;border-radius:2px;padding:3px 10px}
+.logout:hover{background:var(--blue-dark)}
+.tabs{display:flex;gap:2px;background:#dfe4ea;border-bottom:1px solid var(--rule);padding:6px 20px 0}
+.tab{border:1px solid transparent;border-bottom:0;background:none;padding:7px 16px;color:#2d3a47;margin-bottom:-1px}
+.tab:hover{background:#eef1f4}
+.tab.active{background:var(--paper);border-color:var(--rule);color:var(--ink);font-weight:bold}
+#content{flex:1;padding:18px 20px 24px;outline:none;background:var(--paper)}
+.statusbar{display:flex;gap:20px;border-top:1px solid var(--rule);background:#e6e9ed;color:var(--muted);font-size:12px;padding:4px 20px}
+
+/* Бет тақырыбы */
+.page-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:14px}
+.page-head h1{font-size:19px;font-weight:bold}
+.page-head p{color:var(--muted);margin-top:2px}
+.actions{display:flex;gap:6px}
+.box{border:1px solid var(--rule);background:var(--paper)}
+.box > h3{font-size:13px;font-weight:bold;background:var(--head);border-bottom:1px solid var(--rule);padding:7px 10px}
+.box-body{padding:10px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.cols.wide-right{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.stack{display:flex;flex-direction:column;gap:16px}
+
+/* Басты бет: жиынтық кесте және жолақтар */
+.summary td{font-size:13px}
+.summary td.num{font-size:15px;font-weight:bold}
+.bars{width:100%;border-collapse:collapse}
+.bars td{padding:5px 10px;border:0;border-bottom:1px solid var(--rule-soft)}
+.bars tr:last-child td{border-bottom:0}
+.bars .label{width:150px}
+.bar{height:12px;background:var(--blue);min-width:2px}
+.bars .num{width:44px;text-align:right}
+
+/* Кестелер */
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse}
+th{position:sticky;top:0;background:var(--head);text-align:left;font-weight:bold;font-size:12px;color:#33404d;padding:6px 9px;border:1px solid var(--rule);white-space:nowrap;user-select:none}
+th.sortable{cursor:pointer}
+th.sortable:hover{background:#e3e8ee}
+th .arrow{margin-left:4px;font-size:10px;color:var(--blue)}
+td{padding:6px 9px;border:1px solid var(--rule-soft);vertical-align:top}
+tbody tr:nth-child(even) td{background:var(--alt)}
+tbody tr.clickable{cursor:pointer}
+tbody tr.clickable:hover td{background:#edf2fa}
+tbody tr.selected td{background:var(--blue-light)}
+th.num,td.num{text-align:right}
+th.center,td.center{text-align:center}
+td .sub{display:block;font-size:12px;color:var(--muted)}
+.mono{font-family:Consolas,"Courier New",monospace}
+th.mono{font-family:inherit}
+td.mono,td.center,td.num,td.nowrap{white-space:nowrap}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+
+/* Мәртебе: түрлі түсті шаршы + мәтін */
+.st{white-space:nowrap}
+.st:before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;background:var(--c,var(--grey))}
+.st-жоба{--c:var(--grey)}
+.st-келісуде{--c:var(--brown);color:var(--brown)}
+.st-бекітілді{--c:var(--green);color:var(--green)}
+.st-мұрағатта{--c:var(--slate);color:var(--slate)}
+
+/* Тізілім: іздеу формасы */
+.search-form{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;border:1px solid var(--rule);background:var(--alt);padding:10px 12px;margin-bottom:12px}
+.search-form label{display:block;font-size:12px;color:var(--muted);margin-bottom:3px}
+.search-form select{min-width:150px}
+.search-form .q input{width:260px}
+.search-form .buttons{display:flex;gap:6px;margin-left:auto}
+.cats{display:flex;gap:12px;align-items:center;height:28px}
+.cats label{display:flex;align-items:center;gap:4px;margin:0;color:var(--ink);font-size:13px;cursor:pointer}
+.cats input{height:auto;margin:0}
+.statuses{display:flex;align-items:center;gap:2px;margin-bottom:8px;font-size:13px}
+.statuses button{border:0;background:none;padding:3px 8px;color:var(--blue);text-decoration:underline}
+.statuses button.on{color:var(--ink);font-weight:bold;text-decoration:none;background:var(--blue-light)}
+.statuses .total{margin-left:auto;color:var(--muted)}
+.row-actions{white-space:nowrap}
+.row-actions button{border:0;background:none;color:var(--blue);padding:0 4px;text-decoration:underline;font-size:12px}
+.row-actions button.del{color:var(--red)}
+
+/* Білім алушы, есептер */
+.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border-bottom:1px solid var(--rule)}
+.toolbar input{width:220px}
+.count-note{margin-left:auto;color:var(--muted);font-size:12px}
+.detail h2{font-size:16px;font-weight:bold;margin-bottom:6px}
+.meta{display:grid;grid-template-columns:130px 1fr;gap:4px 12px;margin:10px 0}
+.meta dt{color:var(--muted)}
+.meta dd{margin:0}
+.section-title{font-weight:bold;margin:14px 0 6px}
+.report-list{margin:0;padding:6px 0 6px 28px}
+.report-list li{padding:3px 0}
+.report-list button{border:0;background:none;padding:0;color:var(--blue);text-decoration:underline;text-align:left}
+.report-list button.on{color:var(--ink);font-weight:bold;text-decoration:none}
+.sql{width:100%;min-height:140px;resize:vertical}
+.sql[readonly]{background:var(--alt);color:#44515e}
+.note{border-left:3px solid var(--blue);background:var(--blue-light);padding:7px 10px;margin-bottom:10px;color:#2a3f5c}
+
+/* Диалог терезелері */
+dialog{border:1px solid #7f8c99;border-radius:0;padding:0;width:min(700px,94vw);max-height:90vh;color:var(--ink);box-shadow:0 8px 28px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(30,40,50,.35)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--blue);color:#fff;padding:8px 8px 8px 14px}
+.dlg-head h2{font-size:14px;font-weight:bold}
+.dlg-head .x{border:0;background:none;color:#fff;font-size:18px;line-height:1;width:26px;height:26px}
+.dlg-head .x:hover{background:var(--blue-dark)}
+.dlg-body{padding:14px 16px 16px}
+.dlg-title{font-size:16px;font-weight:bold;margin-bottom:4px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:3px}
+.field input,.field select{width:100%}
+.field.full{grid-column:1/-1}
+.dlg-actions{display:flex;justify-content:flex-end;gap:6px;margin-top:16px;padding-top:12px;border-top:1px solid var(--rule-soft)}
+.link-row{display:flex;gap:6px;margin-top:8px}
+.link-row select{flex:1.4}.link-row input{flex:1}
+.link{border:0;background:none;color:var(--blue);text-decoration:underline;padding:0;font-size:12px}
+
+.toast{position:fixed;right:20px;bottom:36px;background:#fffbe6;border:1px solid #d9c46a;color:var(--ink);padding:9px 14px;box-shadow:0 2px 8px rgba(0,0,0,.15);z-index:100;max-width:440px}
+.toast.error{background:#fbeceb;border-color:#e3b4b0;color:var(--red)}
+
+@media (max-width:1000px){
+  .cols,.cols.wide-right{grid-template-columns:1fr}
+  .search-form .buttons{margin-left:0}
+  .appname span{display:none}
+}
+.login-roles tr td,.login-roles tr th{background:none!important}

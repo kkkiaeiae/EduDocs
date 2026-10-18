@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduDocs – курстық жұмыс</title>
+  <meta name="description" content="Мемлекеттік ЖОО-дағы оқу үдерісі құжаттарын есепке алуға арналған деректер базасы: Python, SQLite, PyCharm.">
+  <style>
+    :root{--blue:#2b5797;--blue-dark:#1f4277;--blue-light:#e4ecf7;--ink:#1f2933;--muted:#5f6b76;--rule:#c5cdd6;--soft:#e1e6eb;--bg:#eceff2;--paper:#fff;--alt:#f6f8fa}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Arial,"Liberation Sans",Helvetica,sans-serif}
+    a{color:var(--blue)}
+    header{background:var(--blue);color:#fff}
+    .bar{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    .bar strong{font-size:19px}
+    .bar span{color:#cfdcef;font-size:14px}
+    nav{background:#dfe4ea;border-bottom:1px solid var(--rule)}
+    nav .bar{padding:0 20px;gap:0;justify-content:flex-start}
+    nav a{color:#2d3a47;text-decoration:none;padding:9px 14px;font-size:14px}
+    nav a:hover{background:#eef1f4}
+    main{max-width:1080px;margin:0 auto;background:var(--paper);border-left:1px solid var(--rule);border-right:1px solid var(--rule);padding:28px 32px 40px}
+    h1{font-size:24px;line-height:1.35;margin:0 0 8px}
+    h2{font-size:19px;margin:36px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--soft)}
+    p{margin:0 0 12px;max-width:78ch}
+    .meta{display:grid;grid-template-columns:170px 1fr;gap:4px 14px;margin:16px 0 20px;font-size:14px}
+    .meta dt{color:var(--muted)}
+    .meta dd{margin:0}
+    .downloads{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px}
+    .button{display:inline-block;border:1px solid #9aa6b2;border-radius:3px;background:#f7f8fa;padding:6px 14px;color:var(--ink);text-decoration:none;font-size:14px}
+    .button:hover{background:#eceff3}
+    .button.primary{background:var(--blue);border-color:var(--blue-dark);color:#fff}
+    .button.primary:hover{background:var(--blue-dark)}
+    figure{margin:16px 0 22px}
+    figure img{display:block;width:100%;height:auto;border:1px solid var(--rule)}
+    figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 14px}
+    th{background:#f0f2f5;text-align:left;font-weight:bold;padding:6px 9px;border:1px solid var(--rule)}
+    td{padding:6px 9px;border:1px solid var(--soft);vertical-align:top}
+    tbody tr:nth-child(even) td{background:var(--alt)}
+    code,pre{font-family:Consolas,"Courier New",monospace;font-size:13.5px}
+    pre{background:var(--alt);border:1px solid var(--rule);padding:10px 12px;overflow:auto}
+    .note{border-left:3px solid var(--blue);background:var(--blue-light);padding:8px 12px;margin:12px 0;font-size:14px}
+    footer{max-width:1080px;margin:0 auto;padding:14px 20px;color:var(--muted);font-size:13px}
+    @media (max-width:760px){main{padding:20px 16px}.two{grid-template-columns:1fr}.meta{grid-template-columns:1fr}.meta dt{margin-top:6px}}
+  </style>
+</head>
+<body>
+  <header><div class="bar"><strong>EduDocs</strong><span>«Деректер базасы және SQL сұратымдар» пәні бойынша курстық жұмыс</span></div></header>
+  <nav><div class="bar">
+    <a href="#about">Жоба туралы</a><a href="#run">Іске қосу</a><a href="#db">Деректер базасы</a><a href="#steps">12 қадам</a><a href="#screens">Беттер</a>
+  </div></nav>
+  <main>
+    <h1 id="about">Мемлекеттік жоғары оқу орнындағы оқу үдерісіне қатысты құжаттарды есепке алуға арналған деректер базасын құру</h1>
+    <dl class="meta">
+      <dt>Орындағандар</dt><dd>Ербол Елқұт, Авьдал Бахатбек, 6B06112 – «Жасанды интеллект технологиялары», 2-курс</dd>
+      <dt>Ғылыми жетекші</dt><dd>Елибаева Г.К., магистр, аға оқытушы</dd>
+      <dt>Университет</dt><dd>Л.Н. Гумилев атындағы Еуразия ұлттық университеті, Жасанды интеллект технологиялары кафедрасы, Астана, 2026</dd>
+      <dt>Құралдар</dt><dd>Python 3, SQLite, PyCharm; веб-интерфейс – HTML, CSS, JavaScript (тек стандартты кітапхана)</dd>
+    </dl>
+    <p>Кафедралар мен тіркеу офисі дайындайтын оқу құжаттары (силлабустар, оқу жұмыс жоспарлары, емтихан ведомостары, контингент бойынша бұйрықтар, анықтамалар) бір тізілімде тіркеледі. Әр құжаттың бірегей тіркеу нөмірі, түрі, күні, оқу жылы, жауапты бөлімшесі және мәртебесі сақталады, ал бұйрықтар мен анықтамалар оларға қатысты білім алушылармен байланыстырылады.</p>
+    <div class="downloads">
+      <a class="button primary" data-file="report/EduDocs_kurstyq_zhumys.pdf" href="#">Курстық жұмыс (PDF)</a>
+      <a class="button" data-file="report/EduDocs_kurstyq_zhumys.docx" href="#">Курстық жұмыс (DOCX)</a>
+      <a class="button" data-file="report/EduDocs_qorgau.pptx" href="#">Презентация (PPTX)</a>
+      <a class="button" data-repo href="#">Бастапқы код</a>
+    </div>
+
+    <h2 id="run">Іске қосу</h2>
+    <p>Python 3.9 немесе жаңа нұсқасы қажет. Репозиторийді жүктеп алып, PyCharm-да ашыңыз да, <code>start.py</code> файлын іске қосыңыз (немесе <code>app</code> бумасындағы <code>app.py</code>). Браузер <code>http://127.0.0.1:8770/</code> адресін өзі ашады.</p>
+<pre>git clone &lt;репозиторий&gt;
+cd EduDocs
+python start.py</pre>
+    <table>
+      <thead><tr><th>Рөлі</th><th>Логин</th><th>Құпиясөз</th><th>Қолжетімді беттер</th></tr></thead>
+      <tbody>
+        <tr><td>Әкімші</td><td><code>admin</code></td><td><code>Admin2026</code></td><td>Басты бет, Құжаттар тізілімі, Білім алушылар, SQL есептер; құжаттарды енгізу, өзгерту, жою</td></tr>
+        <tr><td>Қонақ</td><td><code>qonaq</code></td><td><code>Qonaq2026</code></td><td>Басты бет, Құжаттар тізілімі, SQL есептер; тек бекітілген және мұрағаттағы құжаттар</td></tr>
+      </tbody>
+    </table>
+    <div class="note">Қосымша компьютердің өзінде жұмыс істейді (Python-ның <code>http.server</code> модулі), сондықтан оны осы бетте ашу мүмкін емес – төменде беттердің скриншоттары берілген.</div>
+
+    <h2 id="db">Деректер базасы</h2>
+    <p>Схема үшінші қалыпты формаға келтірілген: 6 кесте, 4 сыртқы кілт (RESTRICT, CASCADE), 2 индекс, 1 көрініс (<code>v_registry</code>) және бекітілген құжатты жоюға тыйым салатын 1 триггер (<code>trg_protect_approved</code>).</p>
+    <table>
+      <thead><tr><th>Кесте</th><th>Мазмұны</th><th>Жазба</th></tr></thead>
+      <tbody>
+        <tr><td><code>departments</code></td><td>бөлімшелер (кафедралар, тіркеу офисі)</td><td>4</td></tr>
+        <tr><td><code>document_types</code></td><td>құжат түрлері: код, атауы, санаты, сақтау мерзімі</td><td>8</td></tr>
+        <tr><td><code>documents</code></td><td>құжаттарды тіркеу журналы (негізгі кесте)</td><td>36</td></tr>
+        <tr><td><code>students</code></td><td>білім алушылар</td><td>21</td></tr>
+        <tr><td><code>document_students</code></td><td>құжат пен білім алушы арасындағы «көпке-көп» байланыс</td><td>33</td></tr>
+        <tr><td><code>users</code></td><td>қосымшаның пайдаланушылары (логин, құпиясөз хэші, рөлі)</td><td>2</td></tr>
+      </tbody>
+    </table>
+    <figure><img src="img/er_diagram.png" alt="EduDocs деректер базасының диаграммасы: 6 кесте және олардың байланыстары" loading="lazy"><figcaption>Деректер базасының диаграммасы (step12_er_diagram.py скрипті жүйелік каталогтан автоматты түрде салады)</figcaption></figure>
+
+    <h2 id="steps">PyCharm ортасындағы 12 қадам</h2>
+    <table>
+      <thead><tr><th>Скрипт</th><th>Курстық жұмыс міндеті</th></tr></thead>
+      <tbody>
+        <tr><td><code>step01_connect.py</code></td><td>деректер базасын құру, қосу және ажырату</td></tr>
+        <tr><td><code>step02_create_tables.py</code></td><td>кестелер мен байланыстарды құру</td></tr>
+        <tr><td><code>step03_insert.py</code></td><td>деректерді енгізу және шектеулерді тексеру</td></tr>
+        <tr><td><code>step04_update_delete.py</code></td><td>деректерді өзгерту және жою</td></tr>
+        <tr><td><code>step05_select_simple.py</code></td><td>бір кестеден іріктеу</td></tr>
+        <tr><td><code>step06_filter.py</code></td><td>деректерді сүзгілеу</td></tr>
+        <tr><td><code>step07_group_sort.py</code></td><td>жолдарды топтау және сұрыптау</td></tr>
+        <tr><td><code>step08_join.py</code></td><td>бірнеше кестеден іріктеу</td></tr>
+        <tr><td><code>step09_subquery_union.py</code></td><td>кірістірілген сұратымдар және UNION</td></tr>
+        <tr><td><code>step10_view_trigger.py</code></td><td>көрініс және триггер</td></tr>
+        <tr><td><code>step11_transaction_index.py</code></td><td>транзакциялар және индекс</td></tr>
+        <tr><td><code>step12_er_diagram.py</code></td><td>деректер базасының диаграммасы</td></tr>
+      </tbody>
+    </table>
+    <figure><img src="img/pycharm.png" alt="PyCharm терезесі: step08_join.py коды және Run терезесіндегі нәтиже" loading="lazy"><figcaption>PyCharm ортасы: step08_join.py – сол жақта код, оң жақта Run терезесіндегі нәтиже</figcaption></figure>
+
+    <h2 id="screens">Қосымша беттері</h2>
+    <div class="two">
+      <figure><img src="img/login.png" alt="Жүйеге кіру беті" loading="lazy"><figcaption>Жүйеге кіру</figcaption></figure>
+      <figure><img src="img/dashboard.png" alt="Басты бет: мәртебелер, санаттар және бөлімшелер бойынша жиынтық" loading="lazy"><figcaption>Басты бет</figcaption></figure>
+    </div>
+    <figure><img src="img/registry.png" alt="Құжаттар тізілімі: іздеу формасы, мәртебе бойынша сүзгі және кесте" loading="lazy"><figcaption>Құжаттар тізілімі: «силлабус» сөзі мен 2026–2027 оқу жылы бойынша сүзгілеу, күні бойынша сұрыптау</figcaption></figure>
+    <div class="two">
+      <figure><img src="img/card.png" alt="Құжат картасы және оған қатысты білім алушылар" loading="lazy"><figcaption>Құжат картасы</figcaption></figure>
+      <figure><img src="img/students.png" alt="Білім алушылар беті" loading="lazy"><figcaption>Білім алушылар және оларға қатысты құжаттар</figcaption></figure>
+    </div>
+    <figure><img src="img/reports.png" alt="SQL есептер беті" loading="lazy"><figcaption>SQL есептер (база тек оқу режимінде ашылады)</figcaption></figure>
+    <p class="note">Жобадағы тұлғалардың аты-жөндері мен деректері ойдан құрастырылған және тек оқу мақсатында қолданылады.</p>
+  </main>
+  <footer>EduDocs · Л.Н. Гумилев атындағы ЕҰУ, 2026</footer>
+  <script>
+    // GitHub Pages адресінен (user.github.io/repo) репозиторийдің сілтемесін шығару
+    (function () {
+      var host = location.hostname, parts = location.pathname.split("/").filter(Boolean);
+      var repo = host.endsWith("github.io") && parts.length ? "https://github.com/" + host.split(".")[0] + "/" + parts[0] : "..";
+      document.querySelectorAll("[data-file]").forEach(function (a) {
+        a.href = repo === ".." ? "../" + a.dataset.file : repo + "/raw/main/" + a.dataset.file;
+      });
+      document.querySelectorAll("[data-repo]").forEach(function (a) { a.href = repo === ".." ? "../" : repo; });
+    })();
+  </script>
+</body>
+</html>

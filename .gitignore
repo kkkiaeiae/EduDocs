@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.idea/
+.venv/
+app/outputs/
+app/archive.db
+app/backups/
+.DS_Store
